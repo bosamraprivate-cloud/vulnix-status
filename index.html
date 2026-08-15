@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vulnix Status</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fe4202'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" />
+<style>
+  :root {
+    --ink: #0e1815;
+    --cream: #f2f3ee;
+    --ember: #fe4202;
+    --border: #d6dcda;
+    --muted: #54635f;
+    --ok: #22c55e;
+    --warn: #eab308;
+    --down: #ef4444;
+    --unknown: #c2cbc9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2 {
+    font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 20px 96px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eyebrow img { height: 18px; width: auto; }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 10px 0 28px;
+  }
+  #banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 36px;
+    background: #fff;
+    border: 1px solid var(--border);
+  }
+  #banner .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .component {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fff;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .component-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .component-name {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .state-pill {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .uptime {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .bars {
+    display: flex;
+    gap: 2px;
+    margin-top: 14px;
+    height: 34px;
+    align-items: flex-end;
+  }
+  .bar {
+    flex: 1;
+    min-width: 2px;
+    height: 100%;
+    border-radius: 2px;
+  }
+  .incidents {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .incident-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 0;
+  }
+  .incident-row + .incident-row {
+    border-top: 1px dashed var(--border);
+  }
+  footer {
+    margin-top: 48px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  footer a { color: var(--ink); }
+  .skeleton { color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Vulnix Status</div>
+  <h1>Real-time platform status</h1>
+
+  <div id="banner" class="skeleton">Loading current status…</div>
+  <div id="components"></div>
+
+  <footer>
+    Checked every 5 minutes by an independent monitor that runs outside
+    Vulnix's own infrastructure, so it keeps reporting the truth even during
+    a real Vulnix outage. Data and this page are hosted on GitHub, not on
+    Vulnix's servers.
+    <br /><br />
+    <span id="generated-at"></span> ·
+    <a href="https://vulnix.dev">vulnix.dev</a> ·
+    <a href="https://github.com/bosamraprivate-cloud/vulnix-status">source</a>
+  </footer>
+</main>
+
+<script>
+  const STATE_COLOR = { operational: "var(--ok)", degraded: "var(--warn)", down: "var(--down)", unknown: "var(--unknown)" };
+  const STATE_LABEL = { operational: "Operational", degraded: "Degraded", down: "Outage", unknown: "No data yet" };
+  const ORDER = ["website", "platform", "pentest_runs", "pr_reviews"];
+
+  function fmtDate(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    return d.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+  }
+
+  function worstState(states) {
+    if (states.includes("down")) return "down";
+    if (states.includes("degraded")) return "degraded";
+    if (states.every((s) => s === "unknown")) return "unknown";
+    return "operational";
+  }
+
+  function renderBanner(states) {
+    const banner = document.getElementById("banner");
+    banner.classList.remove("skeleton");
+    const worst = worstState(states);
+    const text = {
+      operational: "All systems operational",
+      degraded: "Some systems degraded",
+      down: "Active outage",
+      unknown: "Waiting on first check",
+    }[worst];
+    banner.innerHTML = `<span class="dot" style="background:${STATE_COLOR[worst]}"></span>${text}`;
+  }
+
+  function renderBars(daily) {
+    const days = [];
+    const now = new Date();
+    for (let i = 89; i >= 0; i--) {
+      const d = new Date(now);
+      d.setUTCDate(d.getUTCDate() - i);
+      days.push(d.toISOString().slice(0, 10));
+    }
+    return days
+      .map((day) => {
+        const state = daily[day] || "unknown";
+        return `<div class="bar" title="${day}: ${STATE_LABEL[state]}" style="background:${STATE_COLOR[state]}"></div>`;
+      })
+      .join("");
+  }
+
+  function renderIncidents(list) {
+    if (!list || list.length === 0) {
+      return `<div class="incidents">No incidents in the last 90 days.</div>`;
+    }
+    const rows = list
+      .slice(0, 5)
+      .map((incident) => {
+        const status = incident.resolved_at
+          ? `${incident.duration_minutes} min`
+          : "ongoing";
+        return `<div class="incident-row"><span>${fmtDate(incident.started_at)}</span><span>${status}</span></div>`;
+      })
+      .join("");
+    return `<div class="incidents">${rows}</div>`;
+  }
+
+  async function load() {
+    const bust = Date.now();
+    const [summary, incidents] = await Promise.all([
+      fetch(`summary.json?_=${bust}`).then((r) => r.json()),
+      fetch(`incidents.json?_=${bust}`).then((r) => r.json()),
+    ]);
+
+    const currentStates = ORDER.map((key) => summary.components[key]?.current_state || "unknown");
+    renderBanner(currentStates);
+
+    document.getElementById("generated-at").textContent = summary.generated_at
+      ? `Last checked ${fmtDate(summary.generated_at)}`
+      : "No checks recorded yet";
+
+    const container = document.getElementById("components");
+    container.innerHTML = ORDER.map((key) => {
+      const c = summary.components[key] || { label: key, current_state: "unknown", uptime_pct_90d: null, daily: {} };
+      const state = c.current_state || "unknown";
+      const uptimeText = c.uptime_pct_90d != null ? `${c.uptime_pct_90d}% uptime (90 days)` : "No data yet";
+      return `
+        <div class="component">
+          <div class="component-head">
+            <div>
+              <div class="component-name">${c.label}</div>
+              <div class="uptime">${uptimeText}</div>
+            </div>
+            <span class="state-pill" style="background:${STATE_COLOR[state]}22;color:${STATE_COLOR[state]}">${STATE_LABEL[state]}</span>
+          </div>
+          <div class="bars">${renderBars(c.daily || {})}</div>
+          ${renderIncidents((incidents.components && incidents.components[key]) || [])}
+        </div>`;
+    }).join("");
+  }
+
+  load().catch((err) => {
+    document.getElementById("banner").textContent = "Unable to load status data.";
+    console.error(err);
+  });
+  setInterval(() => load().catch(() => {}), 60000);
+</script>
+</body>
+</html>

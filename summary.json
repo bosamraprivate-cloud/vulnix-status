@@ -1,0 +1,9 @@
+{
+  "generated_at": null,
+  "components": {
+    "website": { "label": "Website", "current_state": "unknown", "uptime_pct_90d": null, "daily": {} },
+    "platform": { "label": "Platform", "current_state": "unknown", "uptime_pct_90d": null, "daily": {} },
+    "pentest_runs": { "label": "Pentest Runs", "current_state": "unknown", "uptime_pct_90d": null, "daily": {} },
+    "pr_reviews": { "label": "PR Reviews", "current_state": "unknown", "uptime_pct_90d": null, "daily": {} }
+  }
+}
