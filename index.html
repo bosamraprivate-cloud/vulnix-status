@@ -4,62 +4,75 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vulnix Status</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fe4202'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://api.fontshare.com" />
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
 <style>
+  /* Same token set as apps/web/app/globals.css's :root block - Cream
+     background, Ink text, Ember reserved for brand/action (never used
+     below as a status color, per the standing brand rule: orange means
+     "click me", not "this is healthy"). Status colors are the same
+     independent green/yellow/red used in DashboardCharts. */
   :root {
-    --ink: #0e1815;
     --cream: #f2f3ee;
+    --ink: #0e1815;
     --ember: #fe4202;
     --border: #d6dcda;
     --muted: #54635f;
+    --neutral-50: #f5f7f6;
     --ok: #22c55e;
     --warn: #eab308;
     --down: #ef4444;
     --unknown: #c2cbc9;
   }
   * { box-sizing: border-box; }
+  html, body { background: var(--cream); }
   body {
     margin: 0;
-    background: var(--cream);
     color: var(--ink);
     font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2 {
-    font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
-  }
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 64px 20px 96px;
-  }
-  .eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .eyebrow img { height: 18px; width: auto; }
   h1 {
-    font-size: 32px;
+    font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin: 10px 0 28px;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 72px 20px 96px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .brand img { height: 20px; width: auto; }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 32px;
+    margin: 0 0 30px;
   }
   #banner {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 16px 20px;
-    border-radius: 12px;
+    border-radius: 1.125rem;
     font-weight: 600;
     font-size: 15px;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     background: #fff;
     border: 1px solid var(--border);
   }
@@ -71,9 +84,9 @@
   }
   .component {
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 1.125rem;
     background: #fff;
-    padding: 20px 22px;
+    padding: 22px 24px;
     margin-bottom: 16px;
   }
   .component-head {
@@ -89,18 +102,19 @@
   .state-pill {
     font-size: 12px;
     font-weight: 600;
-    padding: 3px 10px;
+    padding: 3px 11px;
     border-radius: 999px;
   }
   .uptime {
     font-size: 12px;
     color: var(--muted);
     margin-top: 2px;
+    font-variant-numeric: tabular-nums;
   }
   .bars {
     display: flex;
     gap: 2px;
-    margin-top: 14px;
+    margin-top: 16px;
     height: 34px;
     align-items: flex-end;
   }
@@ -109,10 +123,11 @@
     min-width: 2px;
     height: 100%;
     border-radius: 2px;
+    background: var(--unknown);
   }
   .incidents {
-    margin-top: 14px;
-    padding-top: 14px;
+    margin-top: 16px;
+    padding-top: 16px;
     border-top: 1px solid var(--border);
     font-size: 13px;
     color: var(--muted);
@@ -121,7 +136,8 @@
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    padding: 6px 0;
+    padding: 7px 0;
+    font-variant-numeric: tabular-nums;
   }
   .incident-row + .incident-row {
     border-top: 1px dashed var(--border);
@@ -130,7 +146,7 @@
     margin-top: 48px;
     font-size: 12px;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: 1.7;
   }
   footer a { color: var(--ink); }
   .skeleton { color: var(--muted); font-size: 14px; }
@@ -138,7 +154,10 @@
 </head>
 <body>
 <main>
-  <div class="eyebrow">Vulnix Status</div>
+  <div class="brand">
+    <img src="vulnix-logo.svg" alt="Vulnix" />
+  </div>
+  <div class="eyebrow">Status</div>
   <h1>Real-time platform status</h1>
 
   <div id="banner" class="skeleton">Loading current status…</div>
@@ -151,8 +170,7 @@
     Vulnix's servers.
     <br /><br />
     <span id="generated-at"></span> ·
-    <a href="https://vulnix.dev">vulnix.dev</a> ·
-    <a href="https://github.com/bosamraprivate-cloud/vulnix-status">source</a>
+    <a href="https://vulnix.dev">vulnix.dev</a>
   </footer>
 </main>
 
