@@ -150,6 +150,44 @@
   }
   footer a { color: var(--ink); }
   .skeleton { color: var(--muted); font-size: 14px; }
+
+  /* Mobile: the 90-day bar strip is the one element wide enough to break
+     layout - at the default 2px bar + 2px gap, 90 days needs ~360px just
+     for the strip, more than a phone's content width leaves after padding.
+     Shrink bars/gap and let the strip scroll horizontally inside its own
+     card (never the page itself) instead of forcing the page to overflow. */
+  @media (max-width: 640px) {
+    main {
+      padding: 40px 16px 64px;
+    }
+    h1 {
+      font-size: 26px;
+      margin-bottom: 22px;
+    }
+    .component {
+      padding: 16px 16px;
+    }
+    .component-head {
+      flex-wrap: wrap;
+    }
+    .bars {
+      gap: 1px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-left: -16px;
+      margin-right: -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .bar {
+      flex: none;
+      width: 3px;
+      min-width: 3px;
+    }
+    .incident-row {
+      flex-wrap: wrap;
+    }
+  }
 </style>
 </head>
 <body>
