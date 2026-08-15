@@ -1,0 +1,4 @@
+{"component": "website", "label": "Website", "state": "operational", "http_status": 200, "latency_ms": 231, "timestamp": "2026-08-15T17:41:09.445538+00:00"}
+{"component": "platform", "label": "Platform", "state": "operational", "http_status": 200, "latency_ms": 454, "timestamp": "2026-08-15T17:41:09.899649+00:00"}
+{"component": "pentest_runs", "label": "Pentest Runs", "state": "degraded", "http_status": 404, "latency_ms": 396, "timestamp": "2026-08-15T17:41:10.296183+00:00"}
+{"component": "pr_reviews", "label": "PR Reviews", "state": "degraded", "http_status": 404, "latency_ms": 381, "timestamp": "2026-08-15T17:41:10.677357+00:00"}
