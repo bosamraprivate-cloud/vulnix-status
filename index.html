@@ -29,7 +29,11 @@
     --unknown: #c2cbc9;
   }
   * { box-sizing: border-box; }
-  html, body { background: var(--cream); }
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    background: var(--cream);
+  }
   body {
     margin: 0;
     color: var(--ink);
@@ -42,6 +46,7 @@
     letter-spacing: -0.02em;
   }
   main {
+    width: 100%;
     max-width: 720px;
     margin: 0 auto;
     padding: 72px 20px 96px;
@@ -51,6 +56,10 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 22px;
+  }
+  .brand a {
+    display: inline-flex;
+    padding: 6px 0;
   }
   .brand img { height: 20px; width: auto; }
   .eyebrow {
@@ -151,38 +160,39 @@
   footer a { color: var(--ink); }
   .skeleton { color: var(--muted); font-size: 14px; }
 
-  /* Mobile: the 90-day bar strip is the one element wide enough to break
-     layout - at the default 2px bar + 2px gap, 90 days needs ~360px just
-     for the strip, more than a phone's content width leaves after padding.
-     Shrink bars/gap and let the strip scroll horizontally inside its own
-     card (never the page itself) instead of forcing the page to overflow. */
+  /* Mobile: compress the 90-day strip so all days remain visible inside
+     the card without forcing the page (or the card) to scroll sideways. */
   @media (max-width: 640px) {
     main {
-      padding: 40px 16px 64px;
+      padding: 32px 14px 56px;
     }
     h1 {
-      font-size: 26px;
+      font-size: clamp(24px, 8vw, 28px);
+      line-height: 1.08;
       margin-bottom: 22px;
     }
+    #banner {
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
     .component {
-      padding: 16px 16px;
+      padding: 16px 14px;
+      border-radius: 14px;
     }
     .component-head {
-      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .component-head > div { min-width: 0; }
+    .state-pill {
+      flex-shrink: 0;
+      padding-inline: 9px;
     }
     .bars {
       gap: 1px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin-left: -16px;
-      margin-right: -16px;
-      padding-left: 16px;
-      padding-right: 16px;
     }
     .bar {
-      flex: none;
-      width: 3px;
-      min-width: 3px;
+      min-width: 0;
     }
     .incident-row {
       flex-wrap: wrap;
@@ -193,7 +203,9 @@
 <body>
 <main>
   <div class="brand">
-    <img src="vulnix-logo.svg" alt="Vulnix" />
+    <a href="https://vulnix.dev" aria-label="Go to Vulnix home page">
+      <img src="vulnix-logo.svg" alt="Vulnix" />
+    </a>
   </div>
   <div class="eyebrow">Status</div>
   <h1>Real-time platform status</h1>
