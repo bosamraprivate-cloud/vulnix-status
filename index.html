@@ -235,6 +235,27 @@
     return d.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
   }
 
+  // Matches how Stripe/GitHub/Cloudflare status pages present these -
+  // "2 hr 45 min" or "3 days 4 hr", never a raw decimal-minute count.
+  function fmtDuration(totalMinutes) {
+    const minutes = Math.round(totalMinutes);
+    if (minutes < 1) return "< 1 min";
+    const days = Math.floor(minutes / 1440);
+    const hours = Math.floor((minutes % 1440) / 60);
+    const mins = minutes % 60;
+    if (days > 0) return hours > 0 ? `${days} day${days === 1 ? "" : "s"} ${hours} hr` : `${days} day${days === 1 ? "" : "s"}`;
+    if (hours > 0) return mins > 0 ? `${hours} hr ${mins} min` : `${hours} hr`;
+    return `${mins} min`;
+  }
+
+  // Real providers round to 2 decimals and drop them entirely at a clean
+  // 100% - "99.98% uptime" reads as precise, "100.000%" reads as a raw
+  // number dump.
+  function fmtUptime(pct) {
+    if (pct >= 99.995) return "100%";
+    return `${pct.toFixed(2)}%`;
+  }
+
   function worstState(states) {
     if (states.includes("down")) return "down";
     if (states.includes("degraded")) return "degraded";
@@ -279,7 +300,7 @@
       .slice(0, 5)
       .map((incident) => {
         const status = incident.resolved_at
-          ? `${incident.duration_minutes} min`
+          ? fmtDuration(incident.duration_minutes)
           : "ongoing";
         return `<div class="incident-row"><span>${fmtDate(incident.started_at)}</span><span>${status}</span></div>`;
       })
@@ -305,7 +326,7 @@
     container.innerHTML = ORDER.map((key) => {
       const c = summary.components[key] || { label: key, current_state: "unknown", uptime_pct_90d: null, daily: {} };
       const state = c.current_state || "unknown";
-      const uptimeText = c.uptime_pct_90d != null ? `${c.uptime_pct_90d}% uptime (90 days)` : "No data yet";
+      const uptimeText = c.uptime_pct_90d != null ? `${fmtUptime(c.uptime_pct_90d)} uptime (90 days)` : "No data yet";
       return `
         <div class="component">
           <div class="component-head">
