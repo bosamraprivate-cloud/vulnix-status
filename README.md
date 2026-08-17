@@ -1,3 +1,20 @@
+<p align="center">
+  <img src="vulnix-logo.svg" alt="Vulnix" width="360" />
+</p>
+
+<p align="center">
+  Agentic pentesting for engineering teams.<br />
+  Continuously test your attack surface, prove exploitable findings, and validate every fix.
+</p>
+
+<p align="center">
+  <a href="https://vulnix.dev"><strong>vulnix.dev</strong></a> ·
+  <a href="https://vulnix.dev/pricing">Pricing</a> ·
+  <a href="https://status.vulnix.dev"><strong>status.vulnix.dev</strong></a>
+</p>
+
+---
+
 # vulnix-status
 
 Data + static site for [status.vulnix.dev](https://status.vulnix.dev), the
@@ -27,3 +44,9 @@ on the next check.
 - `incidents.json` - auto-derived outage timeline per component
 - `index.html` - the static page rendering the above, fetched client-side
 - `CNAME` - GitHub Pages custom domain (`status.vulnix.dev`)
+
+---
+
+<p align="center">
+  #AgenticPentesting &nbsp;#AppSec &nbsp;#Cybersecurity &nbsp;#DevSecOps &nbsp;#AI
+</p>
