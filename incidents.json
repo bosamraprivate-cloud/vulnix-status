@@ -2,25 +2,7 @@
   "components": {
     "website": [],
     "platform": [],
-    "pentest_runs": [
-      {
-        "component": "pentest_runs",
-        "label": "Pentest Runs",
-        "started_at": "2026-08-15T17:41:10.296183+00:00",
-        "resolved_at": "2026-08-17T22:32:29.201441+00:00",
-        "duration_minutes": 3171.3,
-        "worst_state": "down"
-      }
-    ],
-    "pr_reviews": [
-      {
-        "component": "pr_reviews",
-        "label": "PR Reviews",
-        "started_at": "2026-08-15T17:41:10.677357+00:00",
-        "resolved_at": "2026-08-17T22:32:29.950241+00:00",
-        "duration_minutes": 3171.3,
-        "worst_state": "down"
-      }
-    ]
+    "pentest_runs": [],
+    "pr_reviews": []
   }
 }
