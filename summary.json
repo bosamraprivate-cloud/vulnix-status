@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T21:01:13.961728+00:00",
+  "generated_at": "2026-08-17T21:35:08.127398+00:00",
   "components": {
     "website": {
       "label": "Website",
@@ -23,22 +23,22 @@
     },
     "pentest_runs": {
       "label": "Pentest Runs",
-      "current_state": "degraded",
+      "current_state": "down",
       "uptime_pct_90d": 0.0,
       "daily": {
         "2026-08-15": "degraded",
         "2026-08-16": "degraded",
-        "2026-08-17": "degraded"
+        "2026-08-17": "down"
       }
     },
     "pr_reviews": {
       "label": "PR Reviews",
-      "current_state": "degraded",
+      "current_state": "down",
       "uptime_pct_90d": 0.0,
       "daily": {
         "2026-08-15": "degraded",
         "2026-08-16": "degraded",
-        "2026-08-17": "degraded"
+        "2026-08-17": "down"
       }
     }
   }

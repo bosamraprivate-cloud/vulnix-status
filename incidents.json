@@ -9,7 +9,7 @@
         "started_at": "2026-08-15T17:41:10.296183+00:00",
         "resolved_at": null,
         "duration_minutes": null,
-        "worst_state": "degraded"
+        "worst_state": "down"
       }
     ],
     "pr_reviews": [
@@ -19,7 +19,7 @@
         "started_at": "2026-08-15T17:41:10.677357+00:00",
         "resolved_at": null,
         "duration_minutes": null,
-        "worst_state": "degraded"
+        "worst_state": "down"
       }
     ]
   }
