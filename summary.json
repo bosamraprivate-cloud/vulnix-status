@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-18T20:34:21.586149+00:00",
+  "generated_at": "2026-08-18T20:57:24.852109+00:00",
   "components": {
     "website": {
       "label": "Website",
       "current_state": "operational",
-      "uptime_pct_90d": 96.97,
+      "uptime_pct_90d": 97.059,
       "daily": {
         "2026-08-17": "operational",
         "2026-08-18": "down"
