@@ -2,7 +2,16 @@
   "components": {
     "website": [],
     "platform": [],
-    "pentest_runs": [],
+    "pentest_runs": [
+      {
+        "component": "pentest_runs",
+        "label": "Pentest Runs",
+        "started_at": "2026-08-20T20:39:29.844046+00:00",
+        "resolved_at": null,
+        "duration_minutes": null,
+        "worst_state": "degraded"
+      }
+    ],
     "pr_reviews": []
   }
 }
