@@ -7,8 +7,8 @@
         "component": "pentest_runs",
         "label": "Pentest Runs",
         "started_at": "2026-08-20T20:39:29.844046+00:00",
-        "resolved_at": null,
-        "duration_minutes": null,
+        "resolved_at": "2026-08-20T22:41:13.541158+00:00",
+        "duration_minutes": 121.7,
         "worst_state": "degraded"
       }
     ],
