@@ -229,6 +229,10 @@
   const STATE_LABEL = { operational: "Operational", degraded: "Degraded", down: "Outage", unknown: "No data yet" };
   const ORDER = ["website", "platform", "pentest_runs", "pr_reviews"];
 
+  function escapeHtml(v) {
+    return String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
   function fmtDate(iso) {
     if (!iso) return "";
     const d = new Date(iso);
@@ -331,7 +335,7 @@
         <div class="component">
           <div class="component-head">
             <div>
-              <div class="component-name">${c.label}</div>
+              <div class="component-name">${escapeHtml(c.label)}</div>
               <div class="uptime">${uptimeText}</div>
             </div>
             <span class="state-pill" style="background:${STATE_COLOR[state]}22;color:${STATE_COLOR[state]}">${STATE_LABEL[state]}</span>
