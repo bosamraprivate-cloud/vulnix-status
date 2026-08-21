@@ -458,3 +458,7 @@
 {"component": "platform", "label": "Platform", "state": "operational", "http_status": 200, "latency_ms": 590, "timestamp": "2026-08-20T23:58:50.028436+00:00"}
 {"component": "pentest_runs", "label": "Pentest Runs", "state": "operational", "http_status": 200, "latency_ms": 498, "timestamp": "2026-08-20T23:58:50.526865+00:00"}
 {"component": "pr_reviews", "label": "PR Reviews", "state": "operational", "http_status": 200, "latency_ms": 485, "timestamp": "2026-08-20T23:58:51.011436+00:00"}
+{"component": "website", "label": "Website", "state": "operational", "http_status": 200, "latency_ms": 1175, "timestamp": "2026-08-21T01:50:57.985393+00:00"}
+{"component": "platform", "label": "Platform", "state": "operational", "http_status": 200, "latency_ms": 585, "timestamp": "2026-08-21T01:50:58.570772+00:00"}
+{"component": "pentest_runs", "label": "Pentest Runs", "state": "operational", "http_status": 200, "latency_ms": 550, "timestamp": "2026-08-21T01:50:59.120714+00:00"}
+{"component": "pr_reviews", "label": "PR Reviews", "state": "operational", "http_status": 200, "latency_ms": 498, "timestamp": "2026-08-21T01:50:59.618955+00:00"}

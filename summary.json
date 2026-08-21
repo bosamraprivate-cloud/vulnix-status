@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-08-20T23:58:51.013413+00:00",
+  "generated_at": "2026-08-21T01:50:59.620723+00:00",
   "components": {
     "website": {
       "label": "Website",
       "current_state": "operational",
-      "uptime_pct_90d": 99.13,
+      "uptime_pct_90d": 99.138,
       "daily": {
         "2026-08-17": "operational",
         "2026-08-18": "down",
         "2026-08-19": "operational",
-        "2026-08-20": "operational"
+        "2026-08-20": "operational",
+        "2026-08-21": "operational"
       }
     },
     "platform": {
@@ -20,18 +21,20 @@
         "2026-08-17": "operational",
         "2026-08-18": "operational",
         "2026-08-19": "operational",
-        "2026-08-20": "operational"
+        "2026-08-20": "operational",
+        "2026-08-21": "operational"
       }
     },
     "pentest_runs": {
       "label": "Pentest Runs",
       "current_state": "operational",
-      "uptime_pct_90d": 96.522,
+      "uptime_pct_90d": 96.552,
       "daily": {
         "2026-08-17": "operational",
         "2026-08-18": "operational",
         "2026-08-19": "operational",
-        "2026-08-20": "degraded"
+        "2026-08-20": "degraded",
+        "2026-08-21": "operational"
       }
     },
     "pr_reviews": {
@@ -42,7 +45,8 @@
         "2026-08-17": "operational",
         "2026-08-18": "operational",
         "2026-08-19": "operational",
-        "2026-08-20": "operational"
+        "2026-08-20": "operational",
+        "2026-08-21": "operational"
       }
     }
   }
