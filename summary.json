@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-22T17:00:19.277395+00:00",
+  "generated_at": "2026-08-22T17:30:43.550338+00:00",
   "components": {
     "website": {
       "label": "Website",
       "current_state": "operational",
-      "uptime_pct_90d": 99.448,
+      "uptime_pct_90d": 99.451,
       "daily": {
         "2026-08-17": "operational",
         "2026-08-18": "down",
@@ -30,7 +30,7 @@
     "pentest_runs": {
       "label": "Pentest Runs",
       "current_state": "operational",
-      "uptime_pct_90d": 97.238,
+      "uptime_pct_90d": 97.253,
       "daily": {
         "2026-08-17": "operational",
         "2026-08-18": "operational",
