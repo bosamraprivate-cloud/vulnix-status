@@ -45,6 +45,8 @@ on the next check.
 - `index.html` - the static page rendering the above, fetched client-side
 - `CNAME` - GitHub Pages custom domain (`status.vulnix.dev`)
 
+<!-- pr-review webhook smoke test: verifying Vulnix PR Review posts on this repo after the webhook secret fix -->
+
 ---
 
 <p align="center">
