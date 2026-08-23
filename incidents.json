@@ -12,6 +12,15 @@
         "worst_state": "degraded"
       }
     ],
-    "pr_reviews": []
+    "pr_reviews": [
+      {
+        "component": "pr_reviews",
+        "label": "PR Reviews",
+        "started_at": "2026-08-23T19:35:55.636994+00:00",
+        "resolved_at": null,
+        "duration_minutes": null,
+        "worst_state": "degraded"
+      }
+    ]
   }
 }
