@@ -45,6 +45,8 @@ on the next check.
 - `index.html` - the static page rendering the above, fetched client-side
 - `CNAME` - GitHub Pages custom domain (`status.vulnix.dev`)
 
+<!-- pr-review local e2e smoke test #3: fresh PR after pointing the GitHub App webhook at the local ngrok tunnel -->
+
 ---
 
 <p align="center">
