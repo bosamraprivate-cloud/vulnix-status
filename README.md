@@ -45,7 +45,7 @@ on the next check.
 - `index.html` - the static page rendering the above, fetched client-side
 - `CNAME` - GitHub Pages custom domain (`status.vulnix.dev`)
 
-<!-- pr-review local e2e smoke test: confirming the fixed local worker/core-api pipeline picks this up -->
+<!-- pr-review local e2e smoke test: confirming the fixed local worker/core-api pipeline picks this up (retrigger via ngrok webhook) -->
 
 ---
 
