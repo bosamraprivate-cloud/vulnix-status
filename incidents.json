@@ -1,8 +1,25 @@
 {
   "components": {
     "website": [],
-    "platform": [],
+    "platform": [
+      {
+        "component": "platform",
+        "label": "Platform",
+        "started_at": "2026-09-05T22:59:52.129774+00:00",
+        "resolved_at": null,
+        "duration_minutes": null,
+        "worst_state": "down"
+      }
+    ],
     "pentest_runs": [
+      {
+        "component": "pentest_runs",
+        "label": "Pentest Runs",
+        "started_at": "2026-09-05T22:59:52.591001+00:00",
+        "resolved_at": null,
+        "duration_minutes": null,
+        "worst_state": "down"
+      },
       {
         "component": "pentest_runs",
         "label": "Pentest Runs",
