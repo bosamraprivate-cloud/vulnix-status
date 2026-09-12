@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  Agentic pentesting for engineering teams.<br />
+  AI penetration testing platform with continuous exploit validation.<br />
   Continuously test your attack surface, prove exploitable findings, and validate every fix.
 </p>
 
