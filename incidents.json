@@ -6,8 +6,8 @@
         "component": "platform",
         "label": "Platform",
         "started_at": "2026-09-05T22:59:52.129774+00:00",
-        "resolved_at": null,
-        "duration_minutes": null,
+        "resolved_at": "2026-09-13T00:20:01.694846+00:00",
+        "duration_minutes": 10160.2,
         "worst_state": "down"
       }
     ],
@@ -16,8 +16,8 @@
         "component": "pentest_runs",
         "label": "Pentest Runs",
         "started_at": "2026-09-05T22:59:52.591001+00:00",
-        "resolved_at": null,
-        "duration_minutes": null,
+        "resolved_at": "2026-09-13T00:20:02.382329+00:00",
+        "duration_minutes": 10160.2,
         "worst_state": "down"
       },
       {
